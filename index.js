@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json())
 const courses = [
 	{id:1,name:'Course1'},
 
@@ -29,5 +30,12 @@ app.get('/api/courses/:year/:month',(req,res)=>{
 
 console.log(process.env)
 const port = process.env.PORT || 3000;
-
+app.post('/api/courses',(req,res)=>{
+	const cousre={
+		id:courses.length + 1,
+		name:req.body.name
+	}
+	courses.push(course)
+	res.send(course)
+})
 app.listen(port,()=> console.log(`Listening port number ${port}`))
