@@ -38,4 +38,22 @@ app.post('/api/courses',(req,res)=>{
 	courses.push(course)
 	res.send(course)
 })
+app.put('/api/courses/:id',(req,res)=>{
+	const course = courses.filter(x=>x.id === parseInt(req.params.id))
+	if(!course.length) res.status(404).send("Not avaiable ID")
+	
+	course[0].name = req.body.name;
+	res.send(course)
+})
+
+app.delete('/api/courses/:id',(req,res)=>{
+	const course = courses.find(x=>x.id === parseInt(req.params.id))
+	console.log(course)
+	if(!course) res.status(404).send("Not avaiable ID")
+	
+	const index = courses.indexOf(course);
+	courses.splice(index,1)
+	res.send(course)
+})
+
 app.listen(port,()=> console.log(`Listening port number ${port}`))
