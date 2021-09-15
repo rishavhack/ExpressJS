@@ -4,6 +4,8 @@ const logger = require('./customMiddleware/logger');
 app.use(express.json())
 
 app.use(logger)
+
+
 app.use(function(req,res,next){
 	console.log('Authenticationn...');
 	next();
