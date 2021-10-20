@@ -45,5 +45,12 @@ app.delete('/api/genres/:id',(req,res)=>{
 	res.send(genres)
 })
 
+app.get('/api/genres/:id',(req,res)=>{
+	const genre = genres.find(x => x.id === parseInt(req.params.id))
+	if (!genre) res.status(404).send("Not avaiable ID")
+
+	res.send(genre)
+})
+
 const port = process.env.PORT || 3000;
 app.listen(port,()=> console.log(`Listening port number ${port}`))
